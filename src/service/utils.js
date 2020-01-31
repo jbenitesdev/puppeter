@@ -59,7 +59,10 @@ module.exports = {
             await page.goto(`${siteUrl}cionline/?action=${req.query.action}&menuqc=${req.query.menuqc}&RelatorioPage=1&IndicadoresSelecionados=${req.query.indicadores}&periodoInicial=${req.query.periodoInicial}&periodoFinal=${req.query.periodoFinal}&relatorioPuppeteer=1`);
         }
         else{
-            browser = await puppeteer.launch({headless: true});
+            browser = await puppeteer.launch({headless: true,
+                ignoreDefaultArgs: ['--disable-extensions'], 
+                args: ['--no-sandbox', '--disable-setuid-sandbox']
+            });
             page = await browser.newPage();
             const cookies = [
               {
