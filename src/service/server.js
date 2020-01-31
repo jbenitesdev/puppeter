@@ -6,7 +6,10 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(cors())
+app.use( cors({
+    credentials: true,
+    origin: true,
+}));
 
 app.use('/',require('./routes'))
 
