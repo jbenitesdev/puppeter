@@ -25,9 +25,6 @@ module.exports = {
 
         if(currentHost !== 'localhost'){
             browser = await puppeteer.launch({
-                headless: true,
-                executablePath:'./node_modules/puppeteer/.local-chromium/linux-706915/chrome-linux/chrome',
-                ignoreDefaultArgs: ['--disable-extensions'], 
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
 
@@ -59,8 +56,7 @@ module.exports = {
             await page.goto(`${siteUrl}cionline/?action=${req.query.action}&menuqc=${req.query.menuqc}&RelatorioPage=1&IndicadoresSelecionados=${req.query.indicadores}&periodoInicial=${req.query.periodoInicial}&periodoFinal=${req.query.periodoFinal}&relatorioPuppeteer=1`);
         }
         else{
-            browser = await puppeteer.launch({headless: true,
-                ignoreDefaultArgs: ['--disable-extensions'], 
+            browser = await puppeteer.launch({
                 args: ['--no-sandbox', '--disable-setuid-sandbox']
             });
             page = await browser.newPage();
